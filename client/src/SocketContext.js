@@ -76,4 +76,25 @@ const ContextProvider = ({children}) => {
         connectionRef.current.destroy()
         window.location.reload()
     }
+
+    return (
+        <SocketContext.Provider value={{ 
+            call,
+            callAccepted,
+            myVideo,
+            userVideo,
+            stream,
+            name,
+            setName,
+            callFinished,
+            me,
+            callUser,
+            leaveCall,
+            answerCall
+        }}>
+            {children}
+        </SocketContext.Provider>
+    )
 }
+
+export { ContextProvider, SocketContext }
