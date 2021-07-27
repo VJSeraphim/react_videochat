@@ -16,7 +16,7 @@ const ContextProvider = ({children}) => {
 
     const myVideo = useRef()
     const userVideo = useRef()
-    const connectionRect = useRef()
+    const connectionRef = useRef()
 
     useEffect(() => {
         navigator.mediaDevices.getUserMedia({ video: true, audio: true})
@@ -53,7 +53,7 @@ const ContextProvider = ({children}) => {
     }
 
     const callUser = (id) => {
-        const peer = new Peer({initiator: trie, triclke: false, stream})
+        const peer = new Peer({initiator: true, trickle: false, stream})
 
         peer.on('signal', (data) => {
             socket.emit('calluser', {userToCall: id, signalData: data, from: me, name})
@@ -72,7 +72,7 @@ const ContextProvider = ({children}) => {
     }
 
     const leaveCall = () => {
-        setCallEnded(true)
+        setCallFinished(true)
         connectionRef.current.destroy()
         window.location.reload()
     }
